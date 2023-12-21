@@ -1,4 +1,9 @@
-const Stats = ({ items }) => {
+import { useContext } from "react";
+import TravelsContext from "../../context/context";
+
+const Stats = () => {
+  const { items } = useContext(TravelsContext);
+
   const itemsCount = items.length;
   const doneCount = items.filter((item) => item.done).length;
   const percent = Math.round((doneCount / itemsCount) * 100);
@@ -18,7 +23,7 @@ const Stats = ({ items }) => {
     return (
       <div className="stats">
         {`You have ${itemsCount ? itemsCount : "no"} item${
-          itemsCount > 1 ? "s" : ""
+          itemsCount == 0 || itemsCount > 1 ? "s" : ""
         } in your list, none of them done.`}
       </div>
     );

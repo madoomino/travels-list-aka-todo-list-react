@@ -2,6 +2,7 @@ import { useState } from "react";
 import AddForm from "./ui/components/AddForm";
 import ListItems from "./ui/components/ListItems";
 import Stats from "./ui/components/Stats";
+import TravelsContext from "./context/context";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -9,9 +10,11 @@ function App() {
   return (
     <div className="app">
       <h1>Far Away</h1>
-      <AddForm items={items} setItems={setItems} />
-      <ListItems items={items} setItems={setItems} />
-      <Stats items={items} />
+      <TravelsContext.Provider value={{ items, setItems }}>
+        <AddForm />
+        <ListItems />
+        <Stats />
+      </TravelsContext.Provider>
     </div>
   );
 }

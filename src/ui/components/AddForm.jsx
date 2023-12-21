@@ -1,10 +1,20 @@
-const AddForm = ({ items, setItems }) => {
+import { useContext } from "react";
+import TravelsContext from "../../context/context";
+
+const AddForm = () => {
+  const { items, setItems } = useContext(TravelsContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const val = e.target[1].value;
-    if (items.every((item) => item.name !== val)) {
-      setItems((prevItems) => [...prevItems, { name: val, done: false }]);
+    let travelName = e.target[1].value;
+    let travelQuantity = e.target[0].value;
+    if (items.every((item) => item.name !== travelName)) {
+      setItems((prevItems) => [
+        ...prevItems,
+        { name: travelName, quantity: travelQuantity, done: false },
+      ]);
     }
+    e.target.reset();
   };
   return (
     <form className="add-form" onSubmit={handleSubmit}>

@@ -1,4 +1,9 @@
-const Item = ({ name, done, setItems }) => {
+import { useContext } from "react";
+import TravelsContext from "../../context/context";
+
+const Item = ({ name, quantity, done }) => {
+  const { setItems } = useContext(TravelsContext);
+
   const handleDelete = () => {
     setItems((prevItems) => prevItems.filter((item) => item.name !== name));
   };
@@ -14,10 +19,12 @@ const Item = ({ name, done, setItems }) => {
   };
   return (
     <li>
-      <span>{name}</span>
       <input type="checkbox" name={name} id="" onClick={handleCheck} />
+      <span style={done ? { textDecoration: "line-through" } : {}}>
+        {quantity} {name}
+      </span>
       <button onClick={handleDelete} style={{ color: "red" }}>
-        x
+        X
       </button>
     </li>
   );
