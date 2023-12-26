@@ -8,7 +8,7 @@ const ListItems = () => {
   const handleChange = (e) => {
     const filteringMethod = e.target.value;
 
-    // checking for error
+    // checking for errors
     if (
       !filteringMethod ||
       (filteringMethod !== "description" && filteringMethod !== "packingStatus")
