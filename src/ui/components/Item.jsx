@@ -7,7 +7,7 @@ const Item = ({ name, quantity, done }) => {
   const handleDelete = () => {
     setItems((prevItems) => prevItems.filter((item) => item.name !== name));
   };
-  const handleCheck = () => {
+  const handleChange = () => {
     setItems((prevItems) =>
       prevItems.map((item) => {
         if (item.name === name) {
@@ -19,7 +19,13 @@ const Item = ({ name, quantity, done }) => {
   };
   return (
     <li>
-      <input type="checkbox" name={name} id="" onClick={handleCheck} />
+      <input
+        type="checkbox"
+        name={name}
+        id=""
+        onChange={handleChange}
+        checked={done}
+      />
       <span style={done ? { textDecoration: "line-through" } : {}}>
         {quantity} {name}
       </span>
